@@ -1672,113 +1672,113 @@ if (false) {(function () {
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: "ui-button",
+    name: 'ui-button',
 
-  props: {
-    type: {
-      type: String,
-      default: "primary" },
-    buttonType: String,
-    href: String,
-    color: {
-      type: String,
-      default: "default" },
-    size: {
-      type: String,
-      default: "normal" },
-    raised: {
-      type: Boolean,
-      default: false
+    props: {
+        type: {
+            type: String,
+            default: 'primary' },
+        buttonType: String,
+        href: String,
+        color: {
+            type: String,
+            default: 'default' },
+        size: {
+            type: String,
+            default: 'normal' },
+        raised: {
+            type: Boolean,
+            default: false
+        },
+        icon: String,
+        iconPosition: {
+            type: String,
+            default: 'left' },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        hasDropdown: {
+            type: Boolean,
+            default: false
+        },
+        dropdownPosition: {
+            type: String,
+            default: 'bottom left'
+        },
+        constrainDropdownToScrollParent: {
+            type: Boolean,
+            default: true
+        },
+        openDropdownOn: {
+            type: String,
+            default: 'click' },
+        tooltip: String,
+        openTooltipOn: String,
+        tooltipPosition: String,
+        disableRipple: {
+            type: Boolean,
+            default: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        }
     },
-    icon: String,
-    iconPosition: {
-      type: String,
-      default: "left" },
-    loading: {
-      type: Boolean,
-      default: false
+
+    computed: {
+        classes: function classes() {
+            return ['ui-button--type-' + this.type, 'ui-button--color-' + this.color, 'ui-button--icon-position-' + this.iconPosition, 'ui-button--size-' + this.size, { 'is-anchor': this.isAnchor }, { 'is-raised': this.raised }, { 'is-loading': this.loading }, { 'is-disabled': this.disabled || this.loading }, { 'has-dropdown': this.hasDropdown }];
+        },
+        isAnchor: function isAnchor() {
+            return this.href !== undefined;
+        },
+        progressColor: function progressColor() {
+            if (this.color === 'default' || this.type === 'secondary') {
+                return 'black';
+            }
+
+            return 'white';
+        }
     },
-    hasDropdown: {
-      type: Boolean,
-      default: false
+
+    methods: {
+        onClick: function onClick(e) {
+            this.$emit('click', e);
+        },
+        onKeyUpEnter: function onKeyUpEnter(e) {
+            this.$emit('keyup', e);
+        },
+        onDropdownOpen: function onDropdownOpen() {
+            this.$emit('dropdown-open');
+        },
+        onDropdownClose: function onDropdownClose() {
+            this.$emit('dropdown-close');
+        },
+        openDropdown: function openDropdown() {
+            if (this.$refs.dropdown) {
+                this.$refs.dropdown.open();
+            }
+        },
+        closeDropdown: function closeDropdown() {
+            if (this.$refs.dropdown) {
+                this.$refs.dropdown.close();
+            }
+        },
+        toggleDropdown: function toggleDropdown() {
+            if (this.$refs.dropdown) {
+                this.$refs.dropdown.toggle();
+            }
+        }
     },
-    dropdownPosition: {
-      type: String,
-      default: "bottom left"
-    },
-    constrainDropdownToScrollParent: {
-      type: Boolean,
-      default: true
-    },
-    openDropdownOn: {
-      type: String,
-      default: "click" },
-    tooltip: String,
-    openTooltipOn: String,
-    tooltipPosition: String,
-    disableRipple: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
+
+    components: {
+        UiIcon: __WEBPACK_IMPORTED_MODULE_0__UiIcon_vue__["a" /* default */],
+        UiPopover: __WEBPACK_IMPORTED_MODULE_1__UiPopover_vue__["a" /* default */],
+        UiProgressCircular: __WEBPACK_IMPORTED_MODULE_2__UiProgressCircular_vue__["a" /* default */],
+        UiRippleInk: __WEBPACK_IMPORTED_MODULE_3__UiRippleInk_vue__["a" /* default */],
+        UiTooltip: __WEBPACK_IMPORTED_MODULE_4__UiTooltip_vue__["a" /* default */]
     }
-  },
-
-  computed: {
-    classes: function classes() {
-      return ["ui-button--type-" + this.type, "ui-button--color-" + this.color, "ui-button--icon-position-" + this.iconPosition, "ui-button--size-" + this.size, { "is-anchor": this.isAnchor }, { "is-raised": this.raised }, { "is-loading": this.loading }, { "is-disabled": this.disabled || this.loading }, { "has-dropdown": this.hasDropdown }];
-    },
-    isAnchor: function isAnchor() {
-      return this.href !== undefined;
-    },
-    progressColor: function progressColor() {
-      if (this.color === "default" || this.type === "secondary") {
-        return "black";
-      }
-
-      return "white";
-    }
-  },
-
-  methods: {
-    onClick: function onClick(e) {
-      this.$emit("click", e);
-    },
-    onKeyDownEnter: function onKeyDownEnter(e) {
-      this.$emit("keydown", e);
-    },
-    onDropdownOpen: function onDropdownOpen() {
-      this.$emit("dropdown-open");
-    },
-    onDropdownClose: function onDropdownClose() {
-      this.$emit("dropdown-close");
-    },
-    openDropdown: function openDropdown() {
-      if (this.$refs.dropdown) {
-        this.$refs.dropdown.open();
-      }
-    },
-    closeDropdown: function closeDropdown() {
-      if (this.$refs.dropdown) {
-        this.$refs.dropdown.close();
-      }
-    },
-    toggleDropdown: function toggleDropdown() {
-      if (this.$refs.dropdown) {
-        this.$refs.dropdown.toggle();
-      }
-    }
-  },
-
-  components: {
-    UiIcon: __WEBPACK_IMPORTED_MODULE_0__UiIcon_vue__["a" /* default */],
-    UiPopover: __WEBPACK_IMPORTED_MODULE_1__UiPopover_vue__["a" /* default */],
-    UiProgressCircular: __WEBPACK_IMPORTED_MODULE_2__UiProgressCircular_vue__["a" /* default */],
-    UiRippleInk: __WEBPACK_IMPORTED_MODULE_3__UiRippleInk_vue__["a" /* default */],
-    UiTooltip: __WEBPACK_IMPORTED_MODULE_4__UiTooltip_vue__["a" /* default */]
-  }
 });
 
 /***/ }),
@@ -4296,7 +4296,7 @@ var startRipple = function startRipple(eventType, event) {
             mousedown: 'mouseup',
             touchstart: 'touchend'
         };
-        return releaseMap.eventType || 'touchend';
+        return releaseMap[eventType] || 'touchend';
     }(eventType);
 
     var handleRelease = function handleRelease() {
@@ -12509,14 +12509,14 @@ var render = function() {
       },
       on: {
         click: _vm.onClick,
-        keydown: function($event) {
+        keyup: function($event) {
           if (
             !("button" in $event) &&
             _vm._k($event.keyCode, "enter", 13, $event.key)
           ) {
             return null
           }
-          _vm.onKeyDownEnter($event)
+          _vm.onKeyUpEnter($event)
         }
       }
     },

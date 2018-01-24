@@ -68,7 +68,7 @@ const startRipple = function (eventType, event) {
         mousedown: 'mouseup',
         touchstart: 'touchend',
       };
-      return releaseMap.eventType || 'touchend';
+      return releaseMap[eventType] || 'touchend';
     })(eventType);
 
     const handleRelease = function () {
