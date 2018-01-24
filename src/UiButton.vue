@@ -9,6 +9,7 @@
         :type="isAnchor ? null : buttonType"
 
         @click="onClick"
+        @keyup.enter="onKeyUpEnter"
     >
         <div class="ui-button__content">
             <div class="ui-button__icon" v-if="icon || $slots.icon">
@@ -168,6 +169,10 @@ export default {
     methods: {
         onClick(e) {
             this.$emit('click', e);
+        },
+
+        onKeyUpEnter(e) {
+            this.$emit('keyup', e);
         },
 
         onDropdownOpen() {

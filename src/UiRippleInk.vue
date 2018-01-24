@@ -62,7 +62,14 @@ const startRipple = function (eventType, event) {
         classlist.add(ripple, 'is-held');
     }, 0);
 
-    const releaseEvent = (eventType === 'mousedown' ? 'mouseup' : 'touchend');
+    const releaseEvent = (eventType => {
+      const releaseMap = {
+        keydown: 'keyup',
+        mousedown: 'mouseup',
+        touchstart: 'touchend',
+      };
+      return releaseMap.eventType || 'touchend';
+    })(eventType);
 
     const handleRelease = function () {
         document.removeEventListener(releaseEvent, handleRelease);
@@ -84,6 +91,12 @@ const startRipple = function (eventType, event) {
     document.addEventListener(releaseEvent, handleRelease);
 };
 
+const handleKeyDown = function (e) {
+    // Trigger on enter key only
+    if (e.keyCode === 13) {
+        startRipple(e.type, e);
+    }
+};
 const handleMouseDown = function (e) {
     // Trigger on left click only
     if (e.button === 0) {
@@ -161,6 +174,7 @@ export default {
 
             this.triggerEl.addEventListener('touchstart', handleTouchStart);
             this.triggerEl.addEventListener('mousedown', handleMouseDown);
+            this.triggerEl.addEventListener('keydown', handleKeyDown);
         },
 
         destroyRipple() {
@@ -168,6 +182,7 @@ export default {
                 return;
             }
 
+            this.triggerEl.removeEventListener('keydown', handleKeyDown);
             this.triggerEl.removeEventListener('mousedown', handleMouseDown);
             this.triggerEl.removeEventListener('touchstart', handleTouchStart);
         }
